@@ -1,6 +1,7 @@
 import type { ICarService } from "../services/ICarService";
 import type { Request, Response } from "express";
 import { NotFoundError } from "../errors/notFoundError";
+import { ValidationError } from "../errors/validationError";
 
 /**
  * Car update REST operation handler
@@ -17,6 +18,14 @@ async function updateCar(req: Request, res: Response, carService: ICarService) {
     } catch (error) {
         if (error instanceof NotFoundError) {
             res.sendStatus(404);
+            return;
+        }
+
+        if (error instanceof ValidationError) {
+            res.status(400).json({
+                type: "ValidationError",
+                details: error.message
+            });
             return;
         }
 

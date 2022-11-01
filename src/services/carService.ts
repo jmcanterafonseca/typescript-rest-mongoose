@@ -6,6 +6,7 @@ import type { ICar } from "../models/ICar";
 import { v4 as uuidv4 } from "uuid";
 import { NotFoundError } from "../errors/notFoundError";
 import { AlreadyExistsError } from "../errors/alreadyExistsError";
+import { ValidationError } from "../errors/validationError";
 
 /**
  * Service to manage car information and storing it in a data store
@@ -103,7 +104,7 @@ export class CarService implements ICarService {
      */
     public async updateCar(id: string, carData: ICarData): Promise<void> {
         if (carData.vehicleIdentificationNumber) {
-            throw new Error("Vehicle Identification Number cannot be modified");
+            throw new ValidationError("Vehicle Identification Number cannot be modified");
         }
 
         const existingCar = await this.Car.findOne({ id }, "id type dateCreated");
