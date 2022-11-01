@@ -4,7 +4,7 @@ import type { ICarData } from '../models/ICarData';
 import { AlreadyExistsError } from '../errors/alreadyExistsError';
 
 /**
- * Manages car creation route
+ * Car creation route REST handler
  * @param req Request
  * @param res  Response
  * @param carService the Car Service

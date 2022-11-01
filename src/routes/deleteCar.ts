@@ -3,13 +3,13 @@ import type { Request, Response } from "express";
 import { NotFoundError } from '../errors/notFoundError';
 
 /**
- * Manages car deletion route
+ * Car deletion REST route handler
  * @param req Request
  * @param res Response
  * @param carService The car service
  * @returns 
  */
-export async function deleteCar(req: Request, res: Response, carService: ICarService) {
+async function deleteCar(req: Request, res: Response, carService: ICarService) {
   try {
     await carService.deleteCar(req.params.carId);
     res.sendStatus(204);
@@ -25,3 +25,5 @@ export async function deleteCar(req: Request, res: Response, carService: ICarSer
     return;
   }
 }
+
+export default deleteCar;

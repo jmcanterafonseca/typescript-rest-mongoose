@@ -4,9 +4,9 @@ import mongoose, { Schema, model, connect } from "mongoose";
 import listCars from './routes/listCars';
 import { CarService } from './services/carService';
 import type { ICarService } from './services/ICarService';
-import { getCar } from './routes/getCar';
-import { deleteCar } from './routes/deleteCar';
-import { updateCar } from './routes/updateCar';
+import getCar from './routes/getCar';
+import deleteCar from './routes/deleteCar';
+import updateCar from './routes/updateCar';
 import createCar from './routes/createCar';
 import type { ICar } from './models/ICar';
 
@@ -43,13 +43,12 @@ async function run() {
 
     await connect(mongoDBConnectionString);
     const db = mongoose.connection;
-    db.on("error", console.error.bind(console, "MongoDB connection error:"));
+    db.on("error", (error) => console.error("MongoDB connection error: ", error));
 
     app.listen(port, () => {
         console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
     });
 }
-
 
 function setupService(): ICarService {
     // Create a Schema corresponding to the document interface.

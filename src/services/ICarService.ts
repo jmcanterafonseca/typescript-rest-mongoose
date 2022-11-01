@@ -3,7 +3,7 @@ import type { ICarData } from '../models/ICarData';
 import type { ICar } from '../models/ICar';
 
 /**
- * Interface that allows to manage cards
+ * Interface that allows to manage cars
  * 
  */
 export interface ICarService {
