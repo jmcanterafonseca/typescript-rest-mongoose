@@ -13,16 +13,10 @@ import { AlreadyExistsError } from '../errors/alreadyExistsError';
 export class CarService implements ICarService {
   private readonly Car: Model<ICar>;
 
-  private async guardVehicleIdentificationNumber(carData: ICarData): Promise<void> {
+  private guardVehicleIdentificationNumber(carData: ICarData): void {
     const vehicleIdentificationNumber = carData.vehicleIdentificationNumber;
     if (!vehicleIdentificationNumber) {
       throw new Error("Vehicle Identification Number not present");
-    }
-
-    // There cannot be two cars with the same vehicle identification number
-    const existingData = await this.Car.findOne({ vehicleIdentificationNumber }, "id");
-    if (existingData) {
-      throw new AlreadyExistsError(`Vehicle with identification number ${vehicleIdentificationNumber} already exists`);
     }
   }
 
@@ -70,7 +64,7 @@ export class CarService implements ICarService {
    * @returns The Id (URN) of the new car
    */
   public async addCar(carData: ICarData): Promise<string> {
-    await this.guardVehicleIdentificationNumber(carData);
+    this.guardVehicleIdentificationNumber(carData);
 
     // This is the Id of the Vehicle in our system
     const id = `urn:uuid:${uuidv4()}`;
@@ -79,8 +73,17 @@ export class CarService implements ICarService {
     const dateModified = dateCreated;
 
     // New car document created
-    const car = new this.Car({ ...carData, id, type, dateCreated, dateModified });
-    await car.save();
+    const car = new this.Car({ ...carData, id, type, dateCreated, dateModified, _id: carData.vehicleIdentificationNumber });
+    try {
+      await car.save();
+    }
+    catch (error) {
+      if (error.code === 11000) {
+        throw new AlreadyExistsError(`Vehicle identification number ${carData.vehicleIdentificationNumber} already exists`)
+      }
+
+      throw error;
+    }
 
     return id;
   }
@@ -92,7 +95,7 @@ export class CarService implements ICarService {
    */
   public async updateCar(id: string, carData: ICarData): Promise<void> {
     if (carData.vehicleIdentificationNumber) {
-      await this.guardVehicleIdentificationNumber(carData);
+      throw new Error("Vehicle Identification Number cannot be modified");
     }
 
     const existingCar = await this.Car.findOne({ id }, "id type dateCreated");

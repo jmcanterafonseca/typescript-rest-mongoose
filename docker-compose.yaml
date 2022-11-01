@@ -1,0 +1,29 @@
+version: "3"
+
+networks:
+  n1:
+    external:
+      name: data-center
+
+services:
+  mongo:
+    hostname: mongo
+    networks:
+      - data-center
+    image: mongo:4.2.23
+    restart: unless-stopped
+    container_name: mongo
+    expose:
+      - 27017
+  
+  cars:
+    hostname: cars
+    networks:
+      -  data-center
+    image: cognigy-test:1.0
+    restart: unless-stopped
+    container_name: cars
+    expose:
+      - 5000
+    ports:
+      - "0.0.0.0:5000:5000"
