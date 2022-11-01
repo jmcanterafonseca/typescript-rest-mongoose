@@ -4,25 +4,24 @@ import type { ICarMetadata } from "../models/ICarMetadata";
 
 /**
  * Car listing REST operation handler
- * @param req 
- * @param res 
- * @param carService 
- * @returns 
+ * @param req
+ * @param res
+ * @param carService
+ * @returns
  */
 async function listCars(req: Request, res: Response, carService: ICarService) {
-  let cars: ICarMetadata[] = [];
+    let cars: ICarMetadata[] = [];
 
-  try {
-    cars = await carService.listCars();
-  }
-  catch (error) {
-    console.error(error);
-    res.sendStatus(500);
-    
-    return;
-  }
+    try {
+        cars = await carService.listCars();
+    } catch (error) {
+        console.error(error);
+        res.sendStatus(500);
 
-  res.json(cars);
+        return;
+    }
+
+    res.json(cars);
 }
 
 export default listCars;

@@ -4,10 +4,10 @@ import type { ICar } from "../models/ICar";
 
 /**
  * Get details of a car REST operation handler
- * @param req 
- * @param res 
- * @param carService 
- * @returns 
+ * @param req
+ * @param res
+ * @param carService
+ * @returns
  */
 async function getCar(req: Request, res: Response, carService: ICarService) {
     let carData: ICar | undefined = undefined;
@@ -20,8 +20,7 @@ async function getCar(req: Request, res: Response, carService: ICarService) {
             return;
         }
         res.json(carData);
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
         res.sendStatus(500);
         return;

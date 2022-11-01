@@ -1,4 +1,4 @@
 export interface IError {
-  type: string;
-  details: string;
+    type: string;
+    details: string;
 }

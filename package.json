@@ -8,7 +8,7 @@
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "build": "tsc",
-    "prettier": "prettier --config .prettierrc 'src/**/* --write",
+    "prettier": "prettier --config .prettierrc 'src/**/*' --write",
     "start": "node --es-module-specifier-resolution=node ./es/index.js"
   },
   "repository": {

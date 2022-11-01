@@ -7,23 +7,22 @@ import { NotFoundError } from "../errors/notFoundError";
  * @param req Request
  * @param res Response
  * @param carService The car service
- * @returns 
+ * @returns
  */
 async function deleteCar(req: Request, res: Response, carService: ICarService) {
-  try {
-    await carService.deleteCar(req.params.carId);
-    res.sendStatus(204);
-  }
-  catch (error) {
-    if (error instanceof NotFoundError) {
-      res.sendStatus(404);
-      return;
-    }
+    try {
+        await carService.deleteCar(req.params.carId);
+        res.sendStatus(204);
+    } catch (error) {
+        if (error instanceof NotFoundError) {
+            res.sendStatus(404);
+            return;
+        }
 
-    console.error(error);
-    res.sendStatus(500);
-    return;
-  }
+        console.error(error);
+        res.sendStatus(500);
+        return;
+    }
 }
 
 export default deleteCar;

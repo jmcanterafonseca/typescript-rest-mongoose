@@ -8,7 +8,7 @@ import { AlreadyExistsError } from "../errors/alreadyExistsError";
  * @param req Request
  * @param res  Response
  * @param carService the Car Service
- * @returns 
+ * @returns
  */
 async function createCar(req: Request, res: Response, carService: ICarService) {
     const data = req.body;
@@ -16,8 +16,7 @@ async function createCar(req: Request, res: Response, carService: ICarService) {
     let id = "";
     try {
         id = await carService.addCar(data as ICarData);
-    }
-    catch (error) {
+    } catch (error) {
         if (error instanceof AlreadyExistsError) {
             res.sendStatus(409);
             return;
