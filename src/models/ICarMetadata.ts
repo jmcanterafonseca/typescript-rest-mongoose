@@ -11,4 +11,4 @@ export interface ICarMetadata {
   dateCreated: Schema.Types.Date;
   /** Modified Date */
   dateModified: Schema.Types.Date;
-};
+}

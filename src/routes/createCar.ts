@@ -1,7 +1,7 @@
-import type { ICarService } from '../services/ICarService';
+import type { ICarService } from "../services/ICarService";
 import type { Request, Response } from "express";
-import type { ICarData } from '../models/ICarData';
-import { AlreadyExistsError } from '../errors/alreadyExistsError';
+import type { ICarData } from "../models/ICarData";
+import { AlreadyExistsError } from "../errors/alreadyExistsError";
 
 /**
  * Car creation route REST handler
@@ -13,7 +13,7 @@ import { AlreadyExistsError } from '../errors/alreadyExistsError';
 async function createCar(req: Request, res: Response, carService: ICarService) {
     const data = req.body;
 
-    let id: string = "";
+    let id = "";
     try {
         id = await carService.addCar(data as ICarData);
     }
@@ -28,7 +28,7 @@ async function createCar(req: Request, res: Response, carService: ICarService) {
         return;
     }
 
-    res.setHeader("Location", `/cars/${id}`)
+    res.setHeader("Location", `/cars/${id}`);
     res.sendStatus(201);
 }
 

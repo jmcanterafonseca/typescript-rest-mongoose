@@ -1,6 +1,6 @@
-import type { ICarService } from '../services/ICarService';
+import type { ICarService } from "../services/ICarService";
 import type { Request, Response } from "express";
-import type { ICar } from '../models/ICar';
+import type { ICar } from "../models/ICar";
 
 /**
  * Get details of a car REST operation handler

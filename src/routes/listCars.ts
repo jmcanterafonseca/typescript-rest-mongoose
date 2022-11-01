@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import type { ICarService } from '../services/ICarService';
-import type { ICarMetadata } from '../models/ICarMetadata';
+import type { ICarService } from "../services/ICarService";
+import type { ICarMetadata } from "../models/ICarMetadata";
 
 /**
  * Car listing REST operation handler
@@ -15,7 +15,7 @@ async function listCars(req: Request, res: Response, carService: ICarService) {
   try {
     cars = await carService.listCars();
   }
-  catch(error) {
+  catch (error) {
     console.error(error);
     res.sendStatus(500);
     

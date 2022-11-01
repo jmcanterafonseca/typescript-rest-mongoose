@@ -1,6 +1,6 @@
-import type { ICarMetadata } from '../models/ICarMetadata';
-import type { ICarData } from '../models/ICarData';
-import type { ICar } from '../models/ICar';
+import type { ICarMetadata } from "../models/ICarMetadata";
+import type { ICarData } from "../models/ICarData";
+import type { ICar } from "../models/ICar";
 
 /**
  * Interface that allows to manage cars

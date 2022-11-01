@@ -1,6 +1,6 @@
-import type { ICarService } from '../services/ICarService';
+import type { ICarService } from "../services/ICarService";
 import type { Request, Response } from "express";
-import { NotFoundError } from '../errors/notFoundError';
+import { NotFoundError } from "../errors/notFoundError";
 
 /**
  * Car deletion REST route handler

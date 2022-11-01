@@ -7,9 +7,9 @@ export interface ICarData {
   /** Vehicle identification number (equals to the document Id) */
   vehicleIdentificationNumber: string;
   /** Registration date */
-  dateVehicleFirstRegistered?:  string;
+  dateVehicleFirstRegistered?: string;
   /** Color */
   color?: string;
   /** CO" emissions */
   emissionsCO2?: number;
-};
+}

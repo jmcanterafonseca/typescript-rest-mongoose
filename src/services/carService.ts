@@ -1,11 +1,11 @@
-import type { ICarData } from '../models/ICarData';
-import type { ICarService } from './ICarService';
-import type { ICarMetadata } from '../models/ICarMetadata';
-import type { Model } from 'mongoose';
-import type { ICar } from '../models/ICar';
-import { v4 as uuidv4 } from 'uuid';
-import { NotFoundError } from '../errors/notFoundError';
-import { AlreadyExistsError } from '../errors/alreadyExistsError';
+import type { ICarData } from "../models/ICarData";
+import type { ICarService } from "./ICarService";
+import type { ICarMetadata } from "../models/ICarMetadata";
+import type { Model } from "mongoose";
+import type { ICar } from "../models/ICar";
+import { v4 as uuidv4 } from "uuid";
+import { NotFoundError } from "../errors/notFoundError";
+import { AlreadyExistsError } from "../errors/alreadyExistsError";
 
 /**
  * Service to manage car information and storing it in a data store
@@ -79,7 +79,7 @@ export class CarService implements ICarService {
     }
     catch (error) {
       if (error.code === 11000) {
-        throw new AlreadyExistsError(`Vehicle identification number ${carData.vehicleIdentificationNumber} already exists`)
+        throw new AlreadyExistsError(`Vehicle identification number ${carData.vehicleIdentificationNumber} already exists`);
       }
 
       throw error;

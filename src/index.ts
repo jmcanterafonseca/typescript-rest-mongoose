@@ -1,14 +1,14 @@
 import * as dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
 import mongoose, { Schema, model, connect } from "mongoose";
-import listCars from './routes/listCars';
-import { CarService } from './services/carService';
-import type { ICarService } from './services/ICarService';
-import getCar from './routes/getCar';
-import deleteCar from './routes/deleteCar';
-import updateCar from './routes/updateCar';
-import createCar from './routes/createCar';
-import type { ICar } from './models/ICar';
+import listCars from "./routes/listCars";
+import { CarService } from "./services/carService";
+import type { ICarService } from "./services/ICarService";
+import getCar from "./routes/getCar";
+import deleteCar from "./routes/deleteCar";
+import updateCar from "./routes/updateCar";
+import createCar from "./routes/createCar";
+import type { ICar } from "./models/ICar";
 
 
 async function run() {
