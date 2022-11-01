@@ -4,12 +4,12 @@ export interface ICarData {
     brand: string;
     /** Model */
     model: string;
-    /** Vehicle identification number (equals to the document Id) */
+    /** Vehicle identification number, VIN (is the Mongo document Id) */
     vehicleIdentificationNumber: string;
     /** Registration date */
     dateVehicleFirstRegistered?: string;
     /** Color */
     color?: string;
-    /** CO" emissions */
+    /** CO2 emissions */
     emissionsCO2?: number;
 }

@@ -19,6 +19,7 @@ async function getCar(req: Request, res: Response, carService: ICarService) {
             res.sendStatus(404);
             return;
         }
+
         res.json(carData);
     } catch (error) {
         console.error(error);

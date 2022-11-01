@@ -21,7 +21,10 @@ async function listCars(req: Request, res: Response, carService: ICarService) {
         return;
     }
 
-    res.json(cars);
+    res.json({
+        "@context": "https://schema.org",
+        item: cars
+    });
 }
 
 export default listCars;

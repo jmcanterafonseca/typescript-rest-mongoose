@@ -10,7 +10,7 @@ import { ValidationError } from "../errors/validationError";
 import { ValidationHelper } from "../utils/validationHelper";
 
 /**
- * Service to manage car information and storing it in a data store
+ * Service to manage car information, storing it in a data store
  */
 export class CarService implements ICarService {
     private readonly Car: Model<ICar>;
@@ -21,7 +21,7 @@ export class CarService implements ICarService {
 
     /**
      * List all cars providing its metadata
-     * @returns Car metadata
+     * @returns Car metadata (id, type, dateCreated, dateModified). Aligned with schema.org
      */
     public async listCars(): Promise<ICarMetadata[]> {
         const records = await this.Car.find({}, "-_id id type dateCreated dateModified");
@@ -59,13 +59,16 @@ export class CarService implements ICarService {
      * @returns The Id (URN) of the new car
      */
     public async addCar(carData: ICarData): Promise<string> {
+        if (!carData.vehicleIdentificationNumber) {
+            throw new ValidationError("Vehicle Identification Number must be provided");
+        }
         const validation = ValidationHelper.validate(carData);
 
         if (!validation.result) {
             throw new ValidationError(JSON.stringify(validation.error));
         }
 
-        // This is the Id of the Vehicle in our system
+        // This is the Id of the informational resource of a Car in our system
         const id = `urn:uuid:${uuidv4()}`;
         const type = "Car";
         const dateCreated = Date.now();
@@ -78,6 +81,7 @@ export class CarService implements ICarService {
             type,
             dateCreated,
             dateModified,
+            "@context": "https://schema.org",
             _id: carData.vehicleIdentificationNumber
         });
         try {

@@ -63,7 +63,8 @@ function setupService(): ICarService {
             emissionsCO2: Number,
             dateVehicleFirstRegistered: Date,
             dateCreated: { type: Date, required: true },
-            dateModified: { type: Date, default: Date.now }
+            dateModified: { type: Date, default: Date.now },
+            "@context": String
         },
         { _id: false }
     );

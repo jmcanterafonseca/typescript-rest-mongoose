@@ -2,6 +2,10 @@
     "$id": "https://jmcanterafonseca.github.io/cognigy/spec/schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "VehIdNumber": {
+            "type": "string",
+            "minLength": 1
+        },
         "CarMetadata": {
             "type": "object",
             "properties": {
@@ -40,8 +44,7 @@
                     "minLength": 1
                 },
                 "vehicleIdentificationNumber": {
-                    "type": "string",
-                    "minLength": 1
+                    "$ref": "#/definitions/VehIdNumber"
                 },
                 "dateVehicleFirstRegistered": {
                     "type": "string",
@@ -52,13 +55,39 @@
                     "minimum": 0
                 }
             },
-            "required": ["brand", "model", "vehicleIdentificationNumber"],
             "additionalProperties": false
         }
     },
     "allOf": [
         {
-            "$ref": "#/definitions/CarData"
+            "if": {
+                "type": "object",
+                "properties": {
+                    "vehicleIdentificationNumber": {
+                        "$ref": "#/definitions/VehIdNumber"
+                    }
+                },
+                "required": ["vehicleIdentificationNumber"]
+            },
+            "then": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["brand", "model", "vehicleIdentificationNumber"]
+                    },
+                    {
+                        "$ref": "#/definitions/CarData"
+                    }
+                ]
+            }
+        },
+        {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "$ref": "#/definitions/CarData"
+            }
         }
     ]
 }

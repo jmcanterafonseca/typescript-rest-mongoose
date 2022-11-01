@@ -1,3 +1,3 @@
 import type { ICarMetadata } from "./ICarMetadata";
 import type { ICarData } from "./ICarData";
-export type ICar = ICarData & ICarMetadata;
+export type ICar = { "@context"?: string } & ICarData & ICarMetadata;
