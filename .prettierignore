@@ -1,0 +1,12 @@
+coverage/**
+dist/**
+docs/**
+es/**
+node_modules/**
+typings/**
+*.md
+*.html
+package-lock.json
+tsconfig.json
+tslint.json
+jest.config.js
