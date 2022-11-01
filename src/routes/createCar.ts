@@ -2,6 +2,7 @@ import type { ICarService } from "../services/ICarService";
 import type { Request, Response } from "express";
 import type { ICarData } from "../models/ICarData";
 import { AlreadyExistsError } from "../errors/alreadyExistsError";
+import { ValidationError } from "../errors/validationError";
 
 /**
  * Car creation route REST handler
@@ -19,6 +20,14 @@ async function createCar(req: Request, res: Response, carService: ICarService) {
     } catch (error) {
         if (error instanceof AlreadyExistsError) {
             res.sendStatus(409);
+            return;
+        }
+
+        if (error instanceof ValidationError) {
+            res.status(400).json({
+                type: "ValidationError",
+                details: error.message
+            });
             return;
         }
 

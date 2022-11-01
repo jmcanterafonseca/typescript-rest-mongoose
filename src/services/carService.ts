@@ -7,19 +7,13 @@ import { v4 as uuidv4 } from "uuid";
 import { NotFoundError } from "../errors/notFoundError";
 import { AlreadyExistsError } from "../errors/alreadyExistsError";
 import { ValidationError } from "../errors/validationError";
+import { ValidationHelper } from "../utils/validationHelper";
 
 /**
  * Service to manage car information and storing it in a data store
  */
 export class CarService implements ICarService {
     private readonly Car: Model<ICar>;
-
-    private guardVehicleIdentificationNumber(carData: ICarData): void {
-        const vehicleIdentificationNumber = carData.vehicleIdentificationNumber;
-        if (!vehicleIdentificationNumber) {
-            throw new Error("Vehicle Identification Number not present");
-        }
-    }
 
     constructor(carModel: Model<ICar>) {
         this.Car = carModel;
@@ -65,7 +59,11 @@ export class CarService implements ICarService {
      * @returns The Id (URN) of the new car
      */
     public async addCar(carData: ICarData): Promise<string> {
-        this.guardVehicleIdentificationNumber(carData);
+        const validation = ValidationHelper.validate(carData);
+
+        if (!validation.result) {
+            throw new ValidationError(JSON.stringify(validation.error));
+        }
 
         // This is the Id of the Vehicle in our system
         const id = `urn:uuid:${uuidv4()}`;
@@ -105,6 +103,11 @@ export class CarService implements ICarService {
     public async updateCar(id: string, carData: ICarData): Promise<void> {
         if (carData.vehicleIdentificationNumber) {
             throw new ValidationError("Vehicle Identification Number cannot be modified");
+        }
+
+        const validation = ValidationHelper.validate(carData);
+        if (!validation.result) {
+            throw new ValidationError(JSON.stringify(validation.error));
         }
 
         const existingCar = await this.Car.findOne({ id }, "id type dateCreated");
