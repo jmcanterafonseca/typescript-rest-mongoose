@@ -7,8 +7,9 @@ RUN mkdir -p ./src
 COPY ./src ./src
 COPY ./es ./es
 COPY package.json .
+COPY tsconfig.json .
 
-RUN npm install --production
+RUN npm install
 RUN npm run compile
 
 EXPOSE 5000

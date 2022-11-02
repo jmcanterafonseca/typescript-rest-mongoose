@@ -15,7 +15,7 @@ async function deleteCar(req: Request, res: Response, carService: ICarService) {
         res.sendStatus(204);
     } catch (error) {
         if (error instanceof NotFoundError) {
-            res.send(404).json({
+            res.status(404).json({
                 type: "NotFoundError",
                 details: error.message
             });

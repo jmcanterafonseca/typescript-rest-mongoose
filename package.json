@@ -13,9 +13,10 @@
     "clean": "rimraf './es/*' './typings/*'",
     "docs": "npx swagger-cli bundle -r -o spec/api-spec-full.json spec/api-spec.json",
     "prettier": "prettier --config .prettierrc 'src/**/*' --write",
-    "start": "node --es-module-specifier-resolution=node ./es/index.js",
     "docker-network": "docker network create data-center",
-    "start-docker": "docker-compose up --build -d"
+    "start": "node --es-module-specifier-resolution=node ./es/index.js",
+    "start-docker": "docker-compose up --build -d",
+    "stop-docker": "docker-compose down"
   },
   "repository": {
     "type": "git",
