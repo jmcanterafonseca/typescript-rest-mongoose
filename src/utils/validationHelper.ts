@@ -1,7 +1,7 @@
 import type { ICarData } from "../models/ICarData";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import schema from "../JSON-Schema/car-schema.json";
+import schema from "../JSON-Schema/car-schema.json" assert { type: "json" };
 import type { IValidationResult } from "../models/IValidationResult";
 import type { ISchemaValidationError } from "../models/ISchemaValidationError";
 

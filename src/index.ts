@@ -13,7 +13,7 @@ import type { ICar } from "./models/ICar";
 async function run() {
     dotenv.config();
     const port = process.env.PORT ?? 5000;
-    const mongoDBConnectionString = process.env.MONGO_DB_CONN_STR ?? "mongodb://localhost:27017/test";
+    const mongoDBConnectionString = process.env.MONGODB_CONNECTION_STR ?? "mongodb://localhost:27017/test";
 
     const service = setupService();
 

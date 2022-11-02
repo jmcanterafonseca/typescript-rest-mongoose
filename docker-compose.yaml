@@ -9,7 +9,7 @@ services:
   mongo:
     hostname: mongo
     networks:
-      - data-center
+      - n1
     image: mongo:4.2.23
     restart: unless-stopped
     container_name: mongo
@@ -19,12 +19,12 @@ services:
   car-api:
     hostname: car-api
     networks:
-      - data-center
+      - n1
     env_file:
      - ./config.env
     build:
       context: .
-      dockerfle: Dockerfile
+      dockerfile: Dockerfile
     image: cognigy/car-api:1.0
     restart: unless-stopped
     container_name: car-api
