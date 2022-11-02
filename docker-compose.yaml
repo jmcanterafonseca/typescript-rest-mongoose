@@ -16,13 +16,18 @@ services:
     expose:
       - 27017
   
-  cars:
-    hostname: cars
+  car-api:
+    hostname: car-api
     networks:
-      -  data-center
-    image: cognigy-test:1.0
+      - data-center
+    env_file:
+     - ./config.env
+    build:
+      context: .
+      dockerfle: Dockerfile
+    image: cognigy/car-api:1.0
     restart: unless-stopped
-    container_name: cars
+    container_name: car-api
     expose:
       - 5000
     ports:
