@@ -15,8 +15,7 @@
     "prettier": "prettier --config .prettierrc 'src/**/*' --write",
     "start": "node --es-module-specifier-resolution=node ./es/index.js",
     "docker-network": "docker network create data-center",
-    "docker": "docker-compose up --build -d",
-    "start-docker": "run-s build docker"
+    "start-docker": "docker-compose up --build -d"
   },
   "repository": {
     "type": "git",

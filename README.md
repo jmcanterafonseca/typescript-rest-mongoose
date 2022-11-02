@@ -21,10 +21,11 @@ The Car data model is based on [https://schema.org/Car](https://schema.org/Car).
 There is an intermediate step to create the Docker network (named `data-center`) on which the containers will live. 
 
 ```sh
-npm install
 npm run docker-network
 npm run start-docker
 ```
+
+The command above will build the image and compile the source within the container. 
 
 ### Testing
 
@@ -43,3 +44,4 @@ curl --location --request GET 'http://localhost:5000/cars'
 
 * It would be good to automatically generate the mongoose Schema from the JSON Schema to avoid repetition and improve maintainability.
 * It would be good to incorporate functional tests to test all the API functionality towards CI.
+* It would be good to rollup all the contents in a single file and find a way to minimize the container size
