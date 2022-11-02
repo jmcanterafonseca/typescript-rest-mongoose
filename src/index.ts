@@ -64,6 +64,7 @@ function setupService(): ICarService {
             dateVehicleFirstRegistered: Date,
             dateCreated: { type: Date, required: true },
             dateModified: { type: Date, default: Date.now },
+            // JSON-LD @context
             "@context": String
         },
         { _id: false }

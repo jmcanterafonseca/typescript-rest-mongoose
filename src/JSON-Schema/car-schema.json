@@ -62,11 +62,6 @@
         {
             "if": {
                 "type": "object",
-                "properties": {
-                    "vehicleIdentificationNumber": {
-                        "$ref": "#/definitions/VehIdNumber"
-                    }
-                },
                 "required": ["vehicleIdentificationNumber"]
             },
             "then": {
