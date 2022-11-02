@@ -16,7 +16,10 @@ async function getCar(req: Request, res: Response, carService: ICarService) {
         carData = await carService.getCar(req.params.carId);
 
         if (!carData) {
-            res.sendStatus(404);
+            res.send(404).json({
+                type: "NotFoundError",
+                details: `Car ${req.params.carId} not found`
+            });
             return;
         }
 

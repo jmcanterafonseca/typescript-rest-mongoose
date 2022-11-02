@@ -19,7 +19,10 @@ async function createCar(req: Request, res: Response, carService: ICarService) {
         id = await carService.addCar(data as ICarData);
     } catch (error) {
         if (error instanceof AlreadyExistsError) {
-            res.sendStatus(409);
+            res.status(409).json({
+                type: "AlreadyExistsError",
+                details: error.message
+            });
             return;
         }
 

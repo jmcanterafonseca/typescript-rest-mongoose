@@ -17,7 +17,10 @@ async function updateCar(req: Request, res: Response, carService: ICarService) {
         await carService.updateCar(id, req.body);
     } catch (error) {
         if (error instanceof NotFoundError) {
-            res.sendStatus(404);
+            res.send(404).json({
+                type: "NotFoundError",
+                details: error.message
+            });
             return;
         }
 
