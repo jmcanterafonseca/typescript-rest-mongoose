@@ -5,8 +5,8 @@
     "moduleResolution": "node",
     "lib": [
       "dom",
-      "es2015",
-      "es2015.iterable"
+      "ESNext",
+      "ESNext.Array"
     ],
     "esModuleInterop": true,
     "noUnusedLocals": true,
