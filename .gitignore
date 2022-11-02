@@ -2,3 +2,4 @@ node_modules
 es
 typings
 coverage
+.DS_Store
