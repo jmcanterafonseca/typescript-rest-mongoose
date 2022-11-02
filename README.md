@@ -34,3 +34,8 @@ curl --location --request GET 'http://localhost:5000/cars'
 
 * Postman collection
 * Open API Specification
+
+### Additional tasks
+
+* It would be good to automatically generate the mongoose Schema from the JSON Schema to avoid repetition and improve maintainability
+* It would be good to incorporate functional tests to test all the API functionality in a CI basis

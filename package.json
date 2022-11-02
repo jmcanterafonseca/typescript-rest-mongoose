@@ -11,7 +11,7 @@
     "lint-fix": "tslint -c tslint.json --fix 'src/**/*.ts'",
     "compile": "tsc",
     "clean": "rimraf './es/*' './typings/*'",
-    "docs": "",
+    "docs": "npx swagger-cli bundle -r -o spec/api-spec-full.json spec/api-spec.json",
     "prettier": "prettier --config .prettierrc 'src/**/*' --write",
     "start": "node --es-module-specifier-resolution=node ./es/index.js",
     "docker-network": "docker network create data-center",
@@ -35,7 +35,7 @@
   },
   "engines": {
     "npm": ">=8.0.0 <9.0.0",
-    "node": ">=16.0.0 <17.0.0"
+    "node": ">=16.18.0"
   },
   "author": "Jose M. Cantera",
   "license": "ISC",
