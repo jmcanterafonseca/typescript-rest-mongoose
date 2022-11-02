@@ -1,130 +1,146 @@
 {
-  "openapi": "3.0.3",
-  "info": {
-    "version": "1.0.0",
-    "title": "Car API",
-    "license": {
-      "name": "Apache2"
-    }
-  },
-  "components": {
-    "schemas": {
-      "CarMetadata": {
-        "$ref": "../src/JSON-Schema/car-schema.json#/definitions/CarMetadata"
-      },
-      "CarData": {
-        "$ref": "../src/JSON-Schema/car-schema.json#/definitions/CarData"
-      }
-    }
-  },
-  "paths": {
-    "/cars": {
-      "post": {
-        "summary": "Creates a new Car resource",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schema/CarData"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Success",
-            "headers": {
-              "Location": {
-                "schema": {
-                  "type": "string",
-                  "format": "uri"
-                }
-              }
-            }
-          }
+    "openapi": "3.0.3",
+    "info": {
+        "version": "1.0.0",
+        "title": "Car REST API",
+        "license": {
+            "name": "Apache2"
         }
-      },
-      "get": {
-        "summary": "Retrieves all cars resources",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schema/CarMetadata"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     },
-    "/car/{carId}": {
-      "parameters": [
+    "tags": [
         {
-          "name": "carId",
-          "in": "path",
-          "schema": {
-            "type": "string",
-            "format": "uri"
-          },
-          "required": true,
-          "style": "simple"
+            "name": "Car Resource",
+            "description": "CRUD for Car Resources"
         }
-      ],
-      "responses": {
-        "404": {
-          "summary": "Car resource not found"
+    ],
+    "components": {
+        "schemas": {
+            "CarMetadata": {
+                "$ref": "../src/JSON-Schema/car-schema.json#/definitions/CarMetadata"
+            },
+            "CarData": {
+                "$ref": "../src/JSON-Schema/car-schema.json#/definitions/CarData"
+            }
         }
-      },
-      "get": {
-        "summary": "Retrieves an individual car resource",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schema/CarMetadata"
-                    },
-                    {
-                      "$ref": "#/components/schema/CarData"
+    },
+    "paths": {
+        "/cars": {
+            "post": {
+                "summary": "Creates a new Car resource",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CarData"
+                            }
+                        }
                     }
-                  ]
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created successfully",
+                        "headers": {
+                            "Location": {
+                                "description": "Location header that allows to retrieve the resource just created",
+                                "schema": {
+                                    "type": "string",
+                                    "format": "uri"
+                                }
+                            }
+                        }
+                    }
                 }
-              }
+            },
+            "get": {
+                "summary": "Retrieves all cars resources",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CarMetadata"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          }
-        }
-      },
-      "patch": {
-        "summary": "Updates an individual car resource",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schema/CarData"
-              }
-            }
-          }
         },
-        "responses": {
-          "204": {
-            "summary": "Operation executed"
-          }
+        "/car/{carId}": {
+            "parameters": [
+                {
+                    "name": "carId",
+                    "in": "path",
+                    "schema": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "required": true,
+                    "style": "simple"
+                }
+            ],
+            "get": {
+                "summary": "Retrieves an individual car resource",
+                "responses": {
+                    "200": {
+                        "description": "Retrieved Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/CarMetadata"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/CarData"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car resource not found"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Updates an individual car resource",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CarData"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Operation executed"
+                    },
+                    "404": {
+                        "description": "Car resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletes an individual car resource",
+                "responses": {
+                    "204": {
+                        "description": "Operation executed"
+                    },
+                    "404": {
+                        "description": "Car resource not found"
+                    }
+                }
+            }
         }
-      },
-      "delete": {
-        "204": {
-          "summary": "Operation executed"
-        }
-      }
     }
-  }
 }

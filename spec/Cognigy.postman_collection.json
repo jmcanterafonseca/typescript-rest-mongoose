@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "6e6728e1-a139-4e64-be12-cad93746007d",
+		"name": "Cognigy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"brand\": \"Mercedes\",\n    \"model\": \"C220\",\n    \"color\": \"red\",\n    \"vehicleIdentificationNumber\": \"344444448888\",\n    \"x\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVICE}}/cars",
+					"host": [
+						"{{SERVICE}}"
+					],
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Cars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVICE}}/cars",
+					"host": [
+						"{{SERVICE}}"
+					],
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Car",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVICE}}/cars/urn:uuid:b2c54c62-5075-4310-8690-5974b49a130e",
+					"host": [
+						"{{SERVICE}}"
+					],
+					"path": [
+						"cars",
+						"urn:uuid:b2c54c62-5075-4310-8690-5974b49a130e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Car",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SERVICE}}/cars/urn:uuid:e9d991d7-02aa-4652-994f-abf48dd0506a",
+					"host": [
+						"{{SERVICE}}"
+					],
+					"path": [
+						"cars",
+						"urn:uuid:e9d991d7-02aa-4652-994f-abf48dd0506a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Car",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"color\": \"blue\",\n    \"emissionsCO2\": 40099,\n    \"type\": \"XX\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVICE}}/cars/urn:uuid:e9d991d7-02aa-4652-994f-abf48dd0506a",
+					"host": [
+						"{{SERVICE}}"
+					],
+					"path": [
+						"cars",
+						"urn:uuid:e9d991d7-02aa-4652-994f-abf48dd0506a"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
