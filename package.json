@@ -11,7 +11,7 @@
     "lint-fix": "tslint -c tslint.json --fix 'src/**/*.ts'",
     "compile": "tsc",
     "clean": "rimraf './es/*' './typings/*'",
-    "docs": "npx swagger-cli bundle -r -o spec/api-spec-full.json spec/api-spec.json",
+    "docs": "swagger-cli bundle -r -o spec/api-spec-full.json spec/api-spec.json",
     "prettier": "prettier --config .prettierrc 'src/**/*' --write",
     "docker-network": "docker network create data-center",
     "start": "node --es-module-specifier-resolution=node ./es/index.js",

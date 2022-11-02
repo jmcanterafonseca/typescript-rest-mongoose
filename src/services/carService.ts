@@ -15,6 +15,10 @@ import { ValidationHelper } from "../utils/validationHelper";
 export class CarService implements ICarService {
     private readonly Car: Model<ICar>;
 
+    /**
+     * Constructor
+     * @param carModel The mongoose car model used to store data
+     */
     constructor(carModel: Model<ICar>) {
         this.Car = carModel;
     }
@@ -42,7 +46,7 @@ export class CarService implements ICarService {
 
     /**
      * Deletes a card by Id
-     * @param id The Id of the car
+     * @param id The Id of the car resource (URN)
      *
      */
     public async deleteCar(id: string): Promise<void> {
@@ -101,7 +105,7 @@ export class CarService implements ICarService {
 
     /**
      * Updates a car already existing in the system
-     * @param id
+     * @param id Car resource id (URN)
      * @param carData The data of the car
      */
     public async updateCar(id: string, carData: ICarData): Promise<void> {
