@@ -1,5 +1,5 @@
 {
-    "$id": "https://jmcanterafonseca.github.io/cognigy/spec/schema.json",
+    "$id": "https://jmcanterafonseca.github.io/typescript-rest-mongoose/spec/schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "VehIdNumber": {
