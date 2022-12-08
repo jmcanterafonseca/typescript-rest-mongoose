@@ -1,4 +1,4 @@
-# Cognigy REST Challenge
+# TypeScript REST Mongoose Challenge
 
 ## Data Model
 
